@@ -1,0 +1,22 @@
+fastapi[all]==0.100.0
+uvicorn[standard]==0.23.1
+SQLAlchemy==2.0.20
+asyncpg==0.29.0
+alembic==1.12.0
+pydantic==2.5.1
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+python-dotenv==1.0.0
+structlog==23.3.0
+loguru==0.7.0
+pytest==7.4.0
+httpx==0.28.1
+pytest-asyncio==0.22.0
+coverage==7.5.0
+black==24.3.0
+isort==6.0.0
+mypy==1.6.0
+pydantic-settings==2.1.0
+greenlet==3.0.3
+# Optional: testcontainers for integration tests
+# testcontainers==3.9.0
