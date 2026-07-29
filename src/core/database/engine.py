@@ -12,11 +12,18 @@ _async_session: Optional[async_sessionmaker[AsyncSession]] = None
 def get_engine() -> AsyncEngine:
     global _engine
     if _engine is None:
+        # statement_cache_size=0 is required for Supabase/PgBouncer
+        # transaction pooling (port 6543), which does not support
+        # prepared statements.
         _engine = create_async_engine(
             settings.DATABASE_URL,
             future=True,
             echo=False,
             pool_pre_ping=True,
+            connect_args={
+                "statement_cache_size": 0,
+                "prepared_statement_name_func": lambda: "",
+            },
         )
     return _engine
 

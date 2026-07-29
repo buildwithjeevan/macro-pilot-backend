@@ -1,7 +1,6 @@
 import secrets
 import hashlib
-from datetime import datetime, timedelta
-from typing import Tuple
+from datetime import datetime, timedelta, timezone
 
 from src.core.config.settings import settings
 
@@ -15,4 +14,4 @@ def hash_token(token: str) -> str:
 
 
 def refresh_token_expiry() -> datetime:
-    return datetime.utcnow() + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)
+    return datetime.now(timezone.utc) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS)

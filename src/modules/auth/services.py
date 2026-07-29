@@ -1,5 +1,5 @@
 from typing import Optional
-from datetime import datetime
+from datetime import datetime, timezone
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -51,7 +51,7 @@ class AuthService:
         record = await refresh_repo.get_by_hash(token_hash)
         if not record or record.revoked:
             return None
-        if record.expires_at < datetime.utcnow():
+        if record.expires_at < datetime.now(timezone.utc):
             return None
 
         # rotate: revoke old and create new
